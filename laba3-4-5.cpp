@@ -56,10 +56,10 @@ istream& operator >> (istream& s, int_drib<int>& a);
 int main()
 {
 	system("chcp 1251");
-	drib<int> a(2, 3);
-	//cin >> a;
-	drib<int> b(2, 3);
-	drib<int>c = a + b;
+	int_drib<int>a;
+	cin >> a;
+	int_drib<int>b(2, 2, 3);
+	int_drib<int>c = b + a;
 	cout << c;
 	return 0;
 }
@@ -234,6 +234,10 @@ istream& operator >> (istream& s, int_drib<int>& a)
 	{
 		cout << "Введіть коректне значення знаменника:";
 		s >> a.zn;
+	}
+	if (a.int_part) {
+		a.ch += a.zn * a.int_part;
+		a.int_part = 0;
 	}
 	return s;
 }
