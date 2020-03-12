@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <algorithm>
+#include <list>
 using namespace std;
 
 template<class T>
@@ -56,11 +57,46 @@ istream& operator >> (istream& s, int_drib<int>& a);
 int main()
 {
 	system("chcp 1251");
-	int_drib<int>a;
-	cin >> a;
-	int_drib<int>b(2, 2, 3);
-	int_drib<int>c = b + a;
-	cout << c;
+	//int_drib<int>a;
+	//cin >> a;
+	//int_drib<int>b(2, 2, 3);
+	//int_drib<int>c = b + a;
+	//cout << c;
+	list<int> lst;
+	list<int>:: iterator iter = lst.begin();
+	lst = { 1,3,6,67,8,23,45,11 };
+	list<int>lst2 = lst;
+	auto iter2 = lst2.begin();
+	lst2.insert(iter2, 4);
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (i % 2 == 0){lst.push_front(i*3);}
+		else { lst.push_back(i*2); }
+	}
+	lst.sort();
+	lst.unique();
+	for (auto i = lst.begin(); i != lst.end(); i++)
+	{
+		cout << *i << endl;									// cout list
+	}
+	lst.clear();
+	lst2.pop_back();
+	cout << endl << endl;
+	
+	int_drib<int> a1(2,2, 3);
+	int_drib<int>a2(2,2, 3);
+	int_drib<int>a3(2, 2, 3);
+	int_drib<int> a4(1, 1, 1);
+	list<int_drib<int>> d = { a1,a2,a3 };
+	list<int_drib<int>>::iterator it = d.begin();
+	d.erase(it);
+	d.pop_back();
+	d.pop_front();
+	for (auto i = d.begin(); i != d.end(); i++)
+	{
+		cout << *i << endl;									// cout list
+	}
 	return 0;
 }
 /////////////////////////DRIB////////////////////////////////////////////////////////
